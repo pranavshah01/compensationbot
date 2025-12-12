@@ -124,5 +124,194 @@
     "session_id": "394a2dd1-697e-4bba-ba81-ef4ee5f3a3a5",
     "request_id": "d19820e5-3be3-4d97-9551-b9a677bb6eac",
     "candidate_id": "CAND-PRSHAH-009"
+  },
+  {
+    "timestamp": "2025-12-12T00:47:11.670279+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "   I need a compensation recommendation for CAND-SRSHAH-001",
+    "response": "Hi there! I can help with compensation recommendations. Could you please provide the job title, job level, location, job family, and interview feedback for candidate CAND-SRSHAH-001? Once I have all the details, I can assist you further.",
+    "session_id": "394a2dd1-697e-4bba-ba81-ef4ee5f3a3a5",
+    "request_id": "f2e01eb6-62c6-4ae1-96ce-e8350d86a2b0",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T19:56:17.096604+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "5d840feb-7556-43c4-9907-b5871c392690",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:03:12.677701+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "b192eb4e-6bcf-4b03-a0a7-ea6358544096",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:03:53.432302+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "86262d98-6df8-472f-9cf5-d6331745e240",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:05:33.667042+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "23a33890-cdf0-44ae-8e19-912eb9b77b12",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:10:15.884764+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "```json\n\n```\n\nHi there! I have most of the details for candidate CAND-SRSHAH-001, but I still need the location to complete the compensation recommendation. Could you please provide that information?",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "9fe4cd7e-ce28-4e41-b1b4-89c948fdef3a",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:11:43.401163+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "2e37726f-923b-4278-afb3-f87d10bd71d1",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:13:40.921020+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Senior Software Engineer, P4, Engineering, Hire",
+    "response": "Thank you for providing the details. However, I still need the location for candidate CAND-SRSHAH-001 to complete the compensation recommendation. Could you please provide that information?",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "efefa404-3f15-4351-8f16-e0a540f8bda5",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:16:45.658130+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "can you provide recommendation for this candidate",
+    "response": "For CAND-SRSHAH-001, I recommend a total compensation of $281,950 consisting of: Base Salary: $193,000 (29th percentile of market range $175,000-$237,000 per CompRanges.csv), Bonus: $28,950 (15% for P4 level), Equity: $60,000. This reflects the Hire interview feedback.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "46adb348-c01a-42ee-aada-9e380a21f3ce",
+    "candidate_id": "CAND-SRSHAH-001"
+  },
+  {
+    "timestamp": "2025-12-12T20:17:06.529644+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "   I need a compensation recommendation for CAND-SRSHAH-002 for SEATTLE LOCATION",
+    "response": "Thank you for providing the candidate ID and location. Could you please share the job title, job level, job family, and interview feedback for CAND-SRSHAH-002? Once I have all the necessary details, I can provide a compensation recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "06a4c254-803e-4a93-8e4c-e9c6bef40c8c",
+    "candidate_id": "CAND-SRSHAH-002"
+  },
+  {
+    "timestamp": "2025-12-12T20:17:36.063962+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P2, Finance, Must Hire",
+    "response": "No market data found for Finance Analyst in SEA. Please verify the job title and location.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "fd516a46-9c5d-4b12-99ce-db8d985b5e64",
+    "candidate_id": "CAND-SRSHAH-002"
+  },
+  {
+    "timestamp": "2025-12-12T20:18:29.616130+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P3, Finance, Must Hire",
+    "response": "No market data found for Finance Analyst in SEA. Please verify the job title and location.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "a8b8f11d-ea75-4140-bd78-f808a5168713",
+    "candidate_id": "CAND-SRSHAH-002"
+  },
+  {
+    "timestamp": "2025-12-12T20:23:30.300967+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P3, Finance, Must Hire",
+    "response": "For CAND-SRSHAH-002, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "bed39201-bfbd-474d-a9f2-16104a60fece",
+    "candidate_id": "CAND-SRSHAH-002"
+  },
+  {
+    "timestamp": "2025-12-12T20:52:51.174026+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "   I need a compensation recommendation for CAND-SRSHAH-003 for SEATTLE LOCATION",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "d67811ad-4df0-4d47-99c1-016c237c3b8a",
+    "candidate_id": "CAND-SRSHAH-003"
+  },
+  {
+    "timestamp": "2025-12-12T20:59:25.705824+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "   I need a compensation recommendation for CAND-SRSHAH-003 for SEATTLE LOCATION",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "50d0af2e-8303-493c-830a-f07cfc0cf0e6",
+    "candidate_id": "CAND-SRSHAH-003"
+  },
+  {
+    "timestamp": "2025-12-12T21:00:03.725057+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "   I need a compensation recommendation for CAND-SRSHAH-003 for SEATTLE LOCATION",
+    "response": "I'm processing your request. Please wait for the recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "fd23a369-7f3e-4adb-9e2d-de1c80b3a422",
+    "candidate_id": "CAND-SRSHAH-003"
+  },
+  {
+    "timestamp": "2025-12-12T21:03:18.231907+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P3, Finance, Must Hire",
+    "response": "No market data found for Finance Analyst in SEA. Please verify the job title and location.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "734b2c21-6d3c-4150-8bc4-4d789289d23c",
+    "candidate_id": "CAND-SRSHAH-003"
+  },
+  {
+    "timestamp": "2025-12-12T21:10:30.575898+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P3, Finance, Must Hire",
+    "response": "",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "cd37aa6e-1a87-4765-af4d-f9356c9d8e11",
+    "candidate_id": "CAND-SRSHAH-003"
+  },
+  {
+    "timestamp": "2025-12-12T21:16:50.309730+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P3, Finance, Must HireFinance analyst, P3, Finance, Must Hire",
+    "response": "For CAND-SRSHAH-003, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "f9054246-be26-44a0-8449-545727c575d4",
+    "candidate_id": "CAND-SRSHAH-003"
+  },
+  {
+    "timestamp": "2025-12-12T21:17:32.770777+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "   I need a compensation recommendation for CAND-SRSHAH-004 for SEATTLE LOCATION",
+    "response": "}\n\nThank you for providing the candidate ID and location. Could you please share the job title, job level, job family, and interview feedback for CAND-SRSHAH-004? Once I have all the necessary details, I can provide a compensation recommendation.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "b97905a6-b4d1-4afa-83ca-90715ff85a0b",
+    "candidate_id": "CAND-SRSHAH-004"
+  },
+  {
+    "timestamp": "2025-12-12T21:18:44.947176+00:00",
+    "user_email": "riot-comp-user1@example.com",
+    "message": "Finance analyst, P3, Finance, Must Hire",
+    "response": "For CAND-SRSHAH-004, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback.",
+    "session_id": "7438b180-90fa-4618-92c3-ec0689a0b76e",
+    "request_id": "a89aca37-1045-4a23-ab79-d74e152e3768",
+    "candidate_id": "CAND-SRSHAH-004"
   }
 ]

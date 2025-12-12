@@ -7660,5 +7660,457 @@
     "bonus_percentage_reasoning": "",
     "data_sources_used": "",
     "considerations_and_tradeoffs": ""
+  },
+  "CAND-SRSHAH-001": {
+    "candidate_id": "CAND-SRSHAH-001",
+    "updated_at": "2025-12-12T20:16:45.628052+00:00",
+    "updated_by": "riot-comp-user1@example.com",
+    "created_by": "riot-comp-user1@example.com",
+    "created_at": "2025-12-12 00:47:11.637015+00:00",
+    "state": "active",
+    "job_title": "Senior Software Engineer",
+    "job_level": "P4",
+    "location": "LAX",
+    "job_family": "Engineering",
+    "interview_feedback": null,
+    "proficiency": null,
+    "closed_at": null,
+    "additional_data": {},
+    "recommendation_history": [
+      {
+        "timestamp": "2025-12-12T20:16:45.358351+00:00",
+        "context_snapshot": {
+          "job_title": "Senior Software Engineer",
+          "job_level": "P4",
+          "location": "LAX",
+          "interview_feedback": "Hire",
+          "job_family": "Engineering"
+        },
+        "recommendation": {
+          "status": "approved",
+          "data_status": "OK",
+          "market_compensation": {
+            "min": 175000,
+            "max": 237000,
+            "currency": "USD"
+          },
+          "internal_parity": null,
+          "recommendation": {
+            "base_salary": 193000.0,
+            "base_salary_percentile": 29.0,
+            "bonus_percentage": 15.0,
+            "equity_amount": 60000.0,
+            "total_compensation": 281950.0,
+            "reasoning": {
+              "market_data_citation": "CompRanges.csv: Senior Software Engineer in LAX range $175,000 - $237,000",
+              "internal_parity_citation": "No internal parity data",
+              "percentile_justification": "31.25 percentile chosen because Hire rating indicates targeting 25-50th percentile",
+              "bonus_justification": "15% bonus for P4 level per company policy",
+              "equity_justification": "$60,000 equity for P4 level per company policy"
+            },
+            "bonus_amount": 28950.0,
+            "market_range": {
+              "min": 175000.0,
+              "max": 237000.0,
+              "source": "CompRanges.csv"
+            }
+          },
+          "response_text": "For CAND-SRSHAH-001, I recommend a total compensation of $281,950 consisting of: Base Salary: $193,000 (29th percentile of market range $175,000-$237,000 per CompRanges.csv), Bonus: $28,950 (15% for P4 level), Equity: $60,000. This reflects the Hire interview feedback."
+        }
+      }
+    ],
+    "recommendation": {
+      "status": "approved",
+      "data_status": "OK",
+      "market_compensation": {
+        "min": 175000,
+        "max": 237000,
+        "currency": "USD"
+      },
+      "internal_parity": null,
+      "recommendation": {
+        "base_salary": 193000.0,
+        "base_salary_percentile": 29.0,
+        "bonus_percentage": 15.0,
+        "equity_amount": 60000.0,
+        "total_compensation": 281950.0,
+        "reasoning": {
+          "market_data_citation": "CompRanges.csv: Senior Software Engineer in LAX range $175,000 - $237,000",
+          "internal_parity_citation": "No internal parity data",
+          "percentile_justification": "31.25 percentile chosen because Hire rating indicates targeting 25-50th percentile",
+          "bonus_justification": "15% bonus for P4 level per company policy",
+          "equity_justification": "$60,000 equity for P4 level per company policy"
+        },
+        "bonus_amount": 28950.0,
+        "market_range": {
+          "min": 175000.0,
+          "max": 237000.0,
+          "source": "CompRanges.csv"
+        }
+      },
+      "response_text": "For CAND-SRSHAH-001, I recommend a total compensation of $281,950 consisting of: Base Salary: $193,000 (29th percentile of market range $175,000-$237,000 per CompRanges.csv), Bonus: $28,950 (15% for P4 level), Equity: $60,000. This reflects the Hire interview feedback."
+    },
+    "base_salary": 193000.0,
+    "base_salary_percentile": 29.0,
+    "base_salary_percent_of_range": null,
+    "bonus_percentage": 15.0,
+    "bonus_amount": 28950.0,
+    "equity_amount": 60000.0,
+    "total_compensation": 281950.0,
+    "market_range": {
+      "min": 175000.0,
+      "max": 237000.0,
+      "source": "CompRanges.csv"
+    },
+    "internal_parity": null,
+    "market_data_analysis": "",
+    "internal_parity_analysis": "",
+    "job_family_impact": "",
+    "proficiency_impact": "",
+    "level_impact": "",
+    "band_placement_reasoning": "",
+    "equity_allocation_reasoning": "",
+    "bonus_percentage_reasoning": "",
+    "data_sources_used": "",
+    "considerations_and_tradeoffs": ""
+  },
+  "CAND-SRSHAH-002": {
+    "candidate_id": "CAND-SRSHAH-002",
+    "location": "SEA",
+    "updated_at": "2025-12-12T20:23:30.269991+00:00",
+    "updated_by": "riot-comp-user1@example.com",
+    "created_by": "riot-comp-user1@example.com",
+    "created_at": "2025-12-12 20:17:06.440973+00:00",
+    "state": "active",
+    "job_title": "Financial Analyst",
+    "job_level": "P3",
+    "job_family": "Finance",
+    "interview_feedback": null,
+    "proficiency": null,
+    "closed_at": null,
+    "additional_data": {},
+    "recommendation_history": [
+      {
+        "timestamp": "2025-12-12T20:23:30.008701+00:00",
+        "context_snapshot": {
+          "job_title": "Financial Analyst",
+          "job_level": "P3",
+          "location": "SEA",
+          "interview_feedback": "Must Hire",
+          "job_family": "Finance"
+        },
+        "recommendation": {
+          "status": "approved",
+          "data_status": "OK",
+          "market_compensation": {
+            "min": 99000,
+            "max": 134000,
+            "currency": "USD"
+          },
+          "internal_parity": null,
+          "recommendation": {
+            "base_salary": 126750.0,
+            "base_salary_percentile": 79.3,
+            "bonus_percentage": 10.0,
+            "equity_amount": 30000.0,
+            "total_compensation": 169425.0,
+            "reasoning": {
+              "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+              "internal_parity_citation": "No internal parity data",
+              "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate fit and competitive offer",
+              "bonus_justification": "10% bonus for P3 level per company policy",
+              "equity_justification": "$30,000 equity for P3 level per company policy"
+            },
+            "bonus_amount": 12675.0,
+            "market_range": {
+              "min": 99000.0,
+              "max": 134000.0,
+              "source": "CompRanges.csv"
+            }
+          },
+          "response_text": "For CAND-SRSHAH-002, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+        }
+      }
+    ],
+    "recommendation": {
+      "status": "approved",
+      "data_status": "OK",
+      "market_compensation": {
+        "min": 99000,
+        "max": 134000,
+        "currency": "USD"
+      },
+      "internal_parity": null,
+      "recommendation": {
+        "base_salary": 126750.0,
+        "base_salary_percentile": 79.3,
+        "bonus_percentage": 10.0,
+        "equity_amount": 30000.0,
+        "total_compensation": 169425.0,
+        "reasoning": {
+          "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+          "internal_parity_citation": "No internal parity data",
+          "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate fit and competitive offer",
+          "bonus_justification": "10% bonus for P3 level per company policy",
+          "equity_justification": "$30,000 equity for P3 level per company policy"
+        },
+        "bonus_amount": 12675.0,
+        "market_range": {
+          "min": 99000.0,
+          "max": 134000.0,
+          "source": "CompRanges.csv"
+        }
+      },
+      "response_text": "For CAND-SRSHAH-002, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+    },
+    "base_salary": 126750.0,
+    "base_salary_percentile": 79.3,
+    "base_salary_percent_of_range": null,
+    "bonus_percentage": 10.0,
+    "bonus_amount": 12675.0,
+    "equity_amount": 30000.0,
+    "total_compensation": 169425.0,
+    "market_range": {
+      "min": 99000.0,
+      "max": 134000.0,
+      "source": "CompRanges.csv"
+    },
+    "internal_parity": null,
+    "market_data_analysis": "",
+    "internal_parity_analysis": "",
+    "job_family_impact": "",
+    "proficiency_impact": "",
+    "level_impact": "",
+    "band_placement_reasoning": "",
+    "equity_allocation_reasoning": "",
+    "bonus_percentage_reasoning": "",
+    "data_sources_used": "",
+    "considerations_and_tradeoffs": ""
+  },
+  "CAND-SRSHAH-003": {
+    "candidate_id": "CAND-SRSHAH-003",
+    "location": "SEA",
+    "updated_at": "2025-12-12T21:16:50.275747+00:00",
+    "updated_by": "riot-comp-user1@example.com",
+    "created_by": "riot-comp-user1@example.com",
+    "created_at": "2025-12-12 20:52:51.099197+00:00",
+    "state": "active",
+    "job_title": "Financial Analyst",
+    "job_level": "P3",
+    "job_family": "Finance",
+    "interview_feedback": null,
+    "proficiency": null,
+    "closed_at": null,
+    "additional_data": {},
+    "recommendation_history": [
+      {
+        "timestamp": "2025-12-12T21:16:50.016618+00:00",
+        "context_snapshot": {
+          "job_title": "Financial Analyst",
+          "job_level": "P3",
+          "location": "SEA",
+          "interview_feedback": "Must Hire",
+          "job_family": "Finance"
+        },
+        "recommendation": {
+          "status": "approved",
+          "data_status": "OK",
+          "market_compensation": {
+            "min": 99000.0,
+            "max": 134000.0,
+            "currency": "USD"
+          },
+          "internal_parity": null,
+          "recommendation": {
+            "base_salary": 126750.0,
+            "base_salary_percentile": 79.3,
+            "bonus_percentage": 10.0,
+            "equity_amount": 30000.0,
+            "total_compensation": 169425.0,
+            "reasoning": {
+              "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+              "internal_parity_citation": "No internal parity data",
+              "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong market positioning",
+              "bonus_justification": "10% bonus for P3 level per company policy",
+              "equity_justification": "$30,000 equity for P3 level per company policy"
+            },
+            "bonus_amount": 12675.0,
+            "market_range": {
+              "min": 99000.0,
+              "max": 134000.0,
+              "source": "CompRanges.csv"
+            }
+          },
+          "response_text": "For CAND-SRSHAH-003, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+        }
+      }
+    ],
+    "recommendation": {
+      "status": "approved",
+      "data_status": "OK",
+      "market_compensation": {
+        "min": 99000.0,
+        "max": 134000.0,
+        "currency": "USD"
+      },
+      "internal_parity": null,
+      "recommendation": {
+        "base_salary": 126750.0,
+        "base_salary_percentile": 79.3,
+        "bonus_percentage": 10.0,
+        "equity_amount": 30000.0,
+        "total_compensation": 169425.0,
+        "reasoning": {
+          "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+          "internal_parity_citation": "No internal parity data",
+          "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong market positioning",
+          "bonus_justification": "10% bonus for P3 level per company policy",
+          "equity_justification": "$30,000 equity for P3 level per company policy"
+        },
+        "bonus_amount": 12675.0,
+        "market_range": {
+          "min": 99000.0,
+          "max": 134000.0,
+          "source": "CompRanges.csv"
+        }
+      },
+      "response_text": "For CAND-SRSHAH-003, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+    },
+    "base_salary": 126750.0,
+    "base_salary_percentile": 79.3,
+    "base_salary_percent_of_range": null,
+    "bonus_percentage": 10.0,
+    "bonus_amount": 12675.0,
+    "equity_amount": 30000.0,
+    "total_compensation": 169425.0,
+    "market_range": {
+      "min": 99000.0,
+      "max": 134000.0,
+      "source": "CompRanges.csv"
+    },
+    "internal_parity": null,
+    "market_data_analysis": "",
+    "internal_parity_analysis": "",
+    "job_family_impact": "",
+    "proficiency_impact": "",
+    "level_impact": "",
+    "band_placement_reasoning": "",
+    "equity_allocation_reasoning": "",
+    "bonus_percentage_reasoning": "",
+    "data_sources_used": "",
+    "considerations_and_tradeoffs": ""
+  },
+  "CAND-SRSHAH-004": {
+    "candidate_id": "CAND-SRSHAH-004",
+    "location": "SEA",
+    "updated_at": "2025-12-12T21:18:44.914056+00:00",
+    "updated_by": "riot-comp-user1@example.com",
+    "created_by": "riot-comp-user1@example.com",
+    "created_at": "2025-12-12 21:17:32.692124+00:00",
+    "state": "active",
+    "job_title": "Financial Analyst",
+    "job_level": "P3",
+    "job_family": "Finance",
+    "interview_feedback": null,
+    "proficiency": null,
+    "closed_at": null,
+    "additional_data": {},
+    "recommendation_history": [
+      {
+        "timestamp": "2025-12-12T21:18:44.651232+00:00",
+        "context_snapshot": {
+          "job_title": "Financial Analyst",
+          "job_level": "P3",
+          "location": "SEA",
+          "interview_feedback": "Must Hire",
+          "job_family": "Finance"
+        },
+        "recommendation": {
+          "status": "approved",
+          "data_status": "OK",
+          "market_compensation": {
+            "min": 99000.0,
+            "max": 134000.0,
+            "currency": "USD"
+          },
+          "internal_parity": null,
+          "recommendation": {
+            "base_salary": 126750.0,
+            "base_salary_percentile": 79.3,
+            "bonus_percentage": 10.0,
+            "equity_amount": 30000.0,
+            "total_compensation": 169425.0,
+            "reasoning": {
+              "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+              "internal_parity_citation": "No internal parity data",
+              "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate deserving higher percentile within target range",
+              "bonus_justification": "10% bonus for P3 level per company policy",
+              "equity_justification": "$30,000 equity for P3 level per company policy"
+            },
+            "bonus_amount": 12675.0,
+            "market_range": {
+              "min": 99000.0,
+              "max": 134000.0,
+              "source": "CompRanges.csv"
+            }
+          },
+          "response_text": "For CAND-SRSHAH-004, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+        }
+      }
+    ],
+    "recommendation": {
+      "status": "approved",
+      "data_status": "OK",
+      "market_compensation": {
+        "min": 99000.0,
+        "max": 134000.0,
+        "currency": "USD"
+      },
+      "internal_parity": null,
+      "recommendation": {
+        "base_salary": 126750.0,
+        "base_salary_percentile": 79.3,
+        "bonus_percentage": 10.0,
+        "equity_amount": 30000.0,
+        "total_compensation": 169425.0,
+        "reasoning": {
+          "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+          "internal_parity_citation": "No internal parity data",
+          "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate deserving higher percentile within target range",
+          "bonus_justification": "10% bonus for P3 level per company policy",
+          "equity_justification": "$30,000 equity for P3 level per company policy"
+        },
+        "bonus_amount": 12675.0,
+        "market_range": {
+          "min": 99000.0,
+          "max": 134000.0,
+          "source": "CompRanges.csv"
+        }
+      },
+      "response_text": "For CAND-SRSHAH-004, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+    },
+    "base_salary": 126750.0,
+    "base_salary_percentile": 79.3,
+    "base_salary_percent_of_range": null,
+    "bonus_percentage": 10.0,
+    "bonus_amount": 12675.0,
+    "equity_amount": 30000.0,
+    "total_compensation": 169425.0,
+    "market_range": {
+      "min": 99000.0,
+      "max": 134000.0,
+      "source": "CompRanges.csv"
+    },
+    "internal_parity": null,
+    "market_data_analysis": "",
+    "internal_parity_analysis": "",
+    "job_family_impact": "",
+    "proficiency_impact": "",
+    "level_impact": "",
+    "band_placement_reasoning": "",
+    "equity_allocation_reasoning": "",
+    "bonus_percentage_reasoning": "",
+    "data_sources_used": "",
+    "considerations_and_tradeoffs": ""
   }
 }

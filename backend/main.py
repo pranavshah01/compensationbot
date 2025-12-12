@@ -1,14 +1,13 @@
 """FastAPI main application."""
 from fastapi import FastAPI, HTTPException, Depends, Header
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
 from sse_starlette.sse import EventSourceResponse
 from typing import Optional
 import asyncio
 import uuid
 import json
 import time
-from datetime import datetime
+import logging
 
 from models import (
     LoginRequest, LoginResponse, ChatRequest, ContextResetRequest,
@@ -19,7 +18,17 @@ from context import context_store, user_context_store
 from utils import system_logger
 from agents import agent_workflow, AgentState
 from messages import message_store
-from config import settings
+
+# Configure logging to file
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('debug.log'),
+        logging.StreamHandler()  # Also print to console
+    ]
+)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Compensation Recommendation Assistant API")
 
@@ -153,7 +162,7 @@ async def chat_stream(chat_request: ChatRequest, current_user: dict = Depends(ge
                 "extracted_fields": {}
             }
             
-            # Run agent workflow
+            # Run agent workflow with keepalive pings using background task
             final_state = None
             step_messages = {
                 "coordinator": "🔍 Analyzing your message and extracting candidate information...",
@@ -163,65 +172,108 @@ async def chat_stream(chat_request: ChatRequest, current_user: dict = Depends(ge
                 "respond": "✍️ Finalizing response..."
             }
             
-            # Stream workflow with updates mode to see all agent steps
-            async for step_output in agent_workflow.astream(initial_state, stream_mode="updates"):
-                final_state = step_output
-                # Stream intermediate updates with descriptive messages
-                node_name = list(step_output.keys())[0] if isinstance(step_output, dict) else "unknown"
-                status_message = step_messages.get(node_name, f"Processing {node_name}...")
-                
-                # Get state from step output to provide more context
-                step_state = None
-                if isinstance(step_output, dict) and len(step_output) > 0:
-                    step_state = list(step_output.values())[0]
-                
-                # Extract additional context for status updates
-                status_data = {
-                    "type": "processing",
-                    "step": node_name,
-                    "message": status_message
-                }
-                
-                # Add specific details based on step
-                if step_state and isinstance(step_state, dict):
-                    if node_name == "coordinator":
-                        # Show if candidate was extracted
-                        extracted_id = step_state.get("candidate_id")
-                        if extracted_id:
-                            status_data["candidate_id"] = extracted_id
-                            status_data["message"] = f"✅ Extracted candidate ID: {extracted_id}. Analyzing requirements..."
-                        # Check if triggering research
-                        next_step = step_state.get("next_step")
-                        if next_step == "research":
-                            status_data["message"] = "✅ All information collected. Initiating research..."
-                    elif node_name == "data_collection":
-                        research_data = step_state.get("research_data", {})
-                        market_data = research_data.get("market_data", {})
-                        internal_parity = research_data.get("internal_parity", {})
-                        if market_data.get("available"):
-                            status_data["message"] = "✅ Market data collected. Gathering internal parity data..."
-                        else:
-                            status_data["message"] = "⚠️ Market data not found. Checking alternatives..."
-                    elif node_name == "research":
-                        research_data = step_state.get("research_data", {})
-                        recommendation = step_state.get("recommendation", {})
-                        if recommendation:
-                            status_data["message"] = "✅ Recommendation generated. Reviewing details..."
-                        else:
-                            status_data["message"] = "🔬 Analyzing market data and generating compensation recommendation..."
-                    elif node_name == "judge":
-                        recommendation = step_state.get("recommendation", {})
-                        if recommendation.get("status") == "approved":
-                            status_data["message"] = "✅ Recommendation validated. Preparing final response..."
-                        else:
-                            status_data["message"] = "⚖️ Validating recommendation quality and data accuracy..."
-                
-                # Only yield processing status if we're not at the final response yet
-                # This prevents duplicate messages
-                yield {
-                    "event": "message",
-                    "data": json.dumps(status_data)
-                }
+            # Keepalive mechanism using queue
+            ping_interval = 3.0  # seconds
+            message_queue = asyncio.Queue()
+            workflow_complete = False
+            
+            async def workflow_runner():
+                """Run workflow and put messages in queue."""
+                nonlocal final_state, workflow_complete
+                try:
+                    async for step_output in agent_workflow.astream(initial_state, stream_mode="updates"):
+                        final_state = step_output
+                        
+                        # Stream intermediate updates with descriptive messages
+                        node_name = list(step_output.keys())[0] if isinstance(step_output, dict) else "unknown"
+                        status_message = step_messages.get(node_name, f"Processing {node_name}...")
+                        
+                        # Get state from step output to provide more context
+                        step_state = None
+                        if isinstance(step_output, dict) and len(step_output) > 0:
+                            step_state = list(step_output.values())[0]
+                        
+                        # Extract additional context for status updates
+                        status_data = {
+                            "type": "processing",
+                            "step": node_name,
+                            "message": status_message
+                        }
+                        
+                        # Add specific details based on step
+                        if step_state and isinstance(step_state, dict):
+                            if node_name == "coordinator":
+                                # Show if candidate was extracted
+                                extracted_id = step_state.get("candidate_id")
+                                if extracted_id:
+                                    status_data["candidate_id"] = extracted_id
+                                    status_data["message"] = f"✅ Extracted candidate ID: {extracted_id}. Analyzing requirements..."
+                                # Check if triggering research
+                                next_step = step_state.get("next_step")
+                                if next_step == "research":
+                                    status_data["message"] = "✅ All information collected. Initiating research..."
+                            elif node_name == "data_collection":
+                                research_data = step_state.get("research_data", {})
+                                market_data = research_data.get("market_data", {})
+                                internal_parity = research_data.get("internal_parity", {})
+                                if market_data.get("available"):
+                                    status_data["message"] = "✅ Market data collected. Gathering internal parity data..."
+                                else:
+                                    status_data["message"] = "⚠️ Market data not found. Checking alternatives..."
+                            elif node_name == "research":
+                                research_data = step_state.get("research_data", {})
+                                recommendation = step_state.get("recommendation", {})
+                                if recommendation:
+                                    status_data["message"] = "✅ Recommendation generated. Reviewing details..."
+                                else:
+                                    status_data["message"] = "🔬 Analyzing market data and generating compensation recommendation..."
+                            elif node_name == "judge":
+                                recommendation = step_state.get("recommendation", {})
+                                if recommendation.get("status") == "approved":
+                                    status_data["message"] = "✅ Recommendation validated. Preparing final response..."
+                                else:
+                                    status_data["message"] = "⚖️ Validating recommendation quality and data accuracy..."
+                        
+                        # Put message in queue
+                        await message_queue.put(("message", status_data))
+                finally:
+                    workflow_complete = True
+                    await message_queue.put(("complete", None))
+            
+            async def ping_sender():
+                """Send periodic keepalive pings."""
+                while not workflow_complete:
+                    await asyncio.sleep(ping_interval)
+                    if not workflow_complete:
+                        await message_queue.put(("ping", {"type": "keepalive", "timestamp": time.time()}))
+            
+            # Start both tasks
+            workflow_task = asyncio.create_task(workflow_runner())
+            ping_task = asyncio.create_task(ping_sender())
+            
+            # Yield messages from queue
+            try:
+                while True:
+                    msg_type, data = await message_queue.get()
+                    
+                    if msg_type == "complete":
+                        break
+                    elif msg_type == "ping":
+                        yield {
+                            "event": "ping",
+                            "data": json.dumps(data)
+                        }
+                    elif msg_type == "message":
+                        yield {
+                            "event": "message",
+                            "data": json.dumps(data)
+                        }
+            finally:
+                # Cancel ping task if still running
+                if not ping_task.done():
+                    ping_task.cancel()
+                # Wait for workflow to complete
+                await workflow_task
             
             # Get final response
             if final_state:
@@ -235,55 +287,18 @@ async def chat_stream(chat_request: ChatRequest, current_user: dict = Depends(ge
                 else:
                     last_state = final_state if isinstance(final_state, dict) else {}
                 
-                # Extract response text - check if it's JSON with response_text field
+                # Extract response from state
                 coordinator_response = last_state.get("response", "I'm sorry, I couldn't process your request.")
                 recommendation = last_state.get("recommendation", {})
                 
-                # PRIORITIZE recommendation response_text over coordinator response
-                # If we have a recommendation, ALWAYS use its response_text (it contains the actual recommendation)
-                response_text = None
-                if isinstance(recommendation, dict) and recommendation.get("response_text"):
-                    response_text = recommendation.get("response_text")
-                elif isinstance(recommendation, dict) and recommendation.get("recommendation", {}):
-                    rec_data = recommendation.get("recommendation", {})
-                    if rec_data.get("response_text"):
-                        response_text = rec_data.get("response_text")
-                    # If no response_text but we have recommendation data, construct a comprehensive response
-                    elif rec_data.get("base_salary"):
-                        base = rec_data.get("base_salary")
-                        bonus = rec_data.get("joining_bonus")
-                        equity = rec_data.get("equity")
-                        parts = [f"**Compensation Recommendation:**"]
-                        parts.append(f"Base Salary: ${base:,}")
-                        if bonus:
-                            parts.append(f"Joining Bonus: ${bonus:,}")
-                        if equity:
-                            parts.append(f"Equity: ${equity:,}")
-                        # Add brief reasoning if available
-                        reasoning = rec_data.get("reasoning", {})
-                        if reasoning.get("market_data_analysis"):
-                            parts.append(f"\n{reasoning.get('market_data_analysis', '')[:200]}...")
-                        parts.append("\nWould you like to see the detailed justification?")
-                        response_text = "\n".join(parts)
+                # Debug logging
+                logger.debug(f"coordinator_response = {coordinator_response[:200] if coordinator_response else 'None'}")
+                logger.debug(f"recommendation keys = {recommendation.keys() if isinstance(recommendation, dict) else 'Not a dict'}")
+                logger.debug(f"next_step = {last_state.get('next_step')}")
                 
-                # If we have a recommendation, use it (don't use coordinator response)
-                # Only fall back to coordinator response if no recommendation exists
-                if not response_text:
-                    # Check if coordinator response should be filtered out
-                    coordinator_lower = coordinator_response.lower()
-                    problematic_phrases = [
-                        "i'll proceed", "i'll get started", "i'll proceed to get", 
-                        "get started on", "proceed with", "researching compensation data"
-                    ]
-                    if any(phrase in coordinator_lower for phrase in problematic_phrases):
-                        # Coordinator said something problematic - use default or empty
-                        response_text = ""  # Empty - user already saw progress updates
-                    else:
-                        response_text = coordinator_response
-                
-                # Final fallback
-                if not response_text or response_text.strip() == "":
-                    response_text = "I'm processing your request. Please wait for the recommendation."
+                # Use coordinator response directly - coordinator is responsible for all messaging
+                response_text = coordinator_response
+                logger.debug(f"Using coordinator response directly: {response_text[:200] if response_text else 'None'}")
                 
                 # Get candidate_id from state (may have been extracted by coordinator)
                 final_candidate_id = last_state.get("candidate_id") or candidate_id
@@ -344,9 +359,6 @@ async def chat_stream(chat_request: ChatRequest, current_user: dict = Depends(ge
                     
                     if context_data:
                         context_store.save_context(final_candidate_id, context_data, current_user["email"])
-                    
-                    # Return candidate_id in response if it was extracted
-                    response_candidate_id = final_candidate_id if final_candidate_id != candidate_id else None
                 
                 # Stream final response
                 # ALWAYS include candidate_id if we have one, to ensure UI stays in sync
@@ -406,55 +418,28 @@ async def chat_stream(chat_request: ChatRequest, current_user: dict = Depends(ge
                              history_sorted = sorted(ctx.recommendation_history, key=lambda h: h.timestamp, reverse=True)
                              recommendation_for_response["history"] = [h.model_dump() for h in history_sorted]
                 
-                # Always stream final response - but prioritize recommendation if available
-                # If we have a recommendation, use its response_text (it contains the actual recommendation)
-                final_response_text = response_text
-                
-                # If response is empty/minimal but we have recommendation, construct response from recommendation
-                if (not final_response_text or final_response_text.strip() == "" or len(final_response_text.strip()) < 20) and recommendation_for_response:
-                    rec_data = recommendation_for_response.get("recommendation", {})
-                    if rec_data and rec_data.get("base_salary"):
-                        base = rec_data.get("base_salary")
-                        bonus = rec_data.get("joining_bonus", 0)
-                        equity = rec_data.get("equity", 0)
-                        parts = [f"**Compensation Recommendation:**"]
-                        parts.append(f"Base Salary: ${base:,}")
-                        if bonus:
-                            parts.append(f"Joining Bonus: ${bonus:,}")
-                        if equity:
-                            parts.append(f"Equity: ${equity:,}")
-                        # Add brief reasoning
-                        reasoning = rec_data.get("reasoning", {})
-                        if reasoning.get("market_data_analysis"):
-                            parts.append(f"\n{reasoning.get('market_data_analysis', '')[:200]}...")
-                        parts.append("\nWould you like to see the detailed justification?")
-                        final_response_text = "\n".join(parts)
-                
-                # Stream the final response (only if we have meaningful content)
-                if final_response_text and final_response_text.strip() and len(final_response_text.strip()) > 10:
-                    print(f"DEBUG: Streaming final response. Candidate: {response_candidate_id}, Has recommendation: {recommendation_for_response is not None}")
-                    yield {
-                        "event": "message",
-                        "data": json.dumps({
-                            "type": "response",
-                            "content": final_response_text,
-                            "response_id": request_id,
-                            "candidate_id": response_candidate_id,  # Only include if active
-                            "recommendation": recommendation_for_response  # Include for sidebar display
-                        })
-                    }
+                # Stream the response from coordinator (coordinator is responsible for all messaging)
+                print(f"DEBUG: Streaming final response. Candidate: {response_candidate_id}, Has recommendation: {recommendation_for_response is not None}")
+                yield {
+                    "event": "message",
+                    "data": json.dumps({
+                        "type": "response",
+                        "content": response_text,
+                        "response_id": request_id,
+                        "candidate_id": response_candidate_id,  # Only include if active
+                        "recommendation": recommendation_for_response  # Include for sidebar display
+                    })
+                }
 
                 
                 # Save message to message store (always save - messages are per user)
                 print(f"DEBUG: Attempting to save message for user={user_email}, candidate={final_candidate_id}")
                 try:
-                    # Save final_response_text (what was streamed) instead of response_text
-                    save_response = final_response_text if final_response_text else response_text
-                    print(f"DEBUG: Saving message. Response length: {len(save_response) if save_response else 0}")
+                    print(f"DEBUG: Saving message. Response length: {len(response_text) if response_text else 0}")
                     message_store.save_message(
                         user_email=user_email,
                         message=chat_request.message,
-                        response=save_response,
+                        response=response_text,
                         session_id=session_id,
                         request_id=request_id,
                         candidate_id=final_candidate_id  # Optional - can be None

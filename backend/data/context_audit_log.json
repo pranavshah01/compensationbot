@@ -22670,5 +22670,1248 @@
       "old_value": null,
       "new_value": ""
     }
+  ],
+  "CAND-SRSHAH-001": [
+    {
+      "timestamp": "2025-12-12T00:47:11.640374+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "updated_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T00:47:11.640383+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "created_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T00:47:11.640386+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "state",
+      "old_value": null,
+      "new_value": "active"
+    },
+    {
+      "timestamp": "2025-12-12T19:56:17.022634+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_title",
+      "old_value": null,
+      "new_value": "Senior Software Engineer"
+    },
+    {
+      "timestamp": "2025-12-12T19:56:17.022654+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_level",
+      "old_value": null,
+      "new_value": "P4"
+    },
+    {
+      "timestamp": "2025-12-12T19:56:17.022656+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family",
+      "old_value": null,
+      "new_value": "Engineering"
+    },
+    {
+      "timestamp": "2025-12-12T19:56:17.022658+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Hire"
+    },
+    {
+      "timestamp": "2025-12-12T19:56:17.022661+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "additional_data",
+      "old_value": null,
+      "new_value": {}
+    },
+    {
+      "timestamp": "2025-12-12T19:56:17.022663+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": null,
+      "new_value": []
+    },
+    {
+      "timestamp": "2025-12-12T20:13:54.634492+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "location",
+      "old_value": null,
+      "new_value": "LAX"
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.366979+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": [],
+      "new_value": [
+        {
+          "timestamp": "2025-12-12T20:16:45.358351+00:00",
+          "context_snapshot": {
+            "job_title": "Senior Software Engineer",
+            "job_level": "P4",
+            "location": "LAX",
+            "interview_feedback": "Hire",
+            "job_family": "Engineering"
+          },
+          "recommendation": {
+            "status": "approved",
+            "data_status": "OK",
+            "market_compensation": {
+              "min": 175000,
+              "max": 237000,
+              "currency": "USD"
+            },
+            "internal_parity": null,
+            "recommendation": {
+              "base_salary": 193000.0,
+              "base_salary_percentile": 29.0,
+              "bonus_percentage": 15.0,
+              "equity_amount": 60000.0,
+              "total_compensation": 281950.0,
+              "reasoning": {
+                "market_data_citation": "CompRanges.csv: Senior Software Engineer in LAX range $175,000 - $237,000",
+                "internal_parity_citation": "No internal parity data",
+                "percentile_justification": "31.25 percentile chosen because Hire rating indicates targeting 25-50th percentile",
+                "bonus_justification": "15% bonus for P4 level per company policy",
+                "equity_justification": "$60,000 equity for P4 level per company policy"
+              },
+              "bonus_amount": 28950.0,
+              "market_range": {
+                "min": 175000.0,
+                "max": 237000.0,
+                "source": "CompRanges.csv"
+              }
+            },
+            "response_text": "For CAND-SRSHAH-001, I recommend a total compensation of $281,950 consisting of: Base Salary: $193,000 (29th percentile of market range $175,000-$237,000 per CompRanges.csv), Bonus: $28,950 (15% for P4 level), Equity: $60,000. This reflects the Hire interview feedback."
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.366992+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation",
+      "old_value": null,
+      "new_value": {
+        "status": "approved",
+        "data_status": "OK",
+        "market_compensation": {
+          "min": 175000,
+          "max": 237000,
+          "currency": "USD"
+        },
+        "internal_parity": null,
+        "recommendation": {
+          "base_salary": 193000.0,
+          "base_salary_percentile": 29.0,
+          "bonus_percentage": 15.0,
+          "equity_amount": 60000.0,
+          "total_compensation": 281950.0,
+          "reasoning": {
+            "market_data_citation": "CompRanges.csv: Senior Software Engineer in LAX range $175,000 - $237,000",
+            "internal_parity_citation": "No internal parity data",
+            "percentile_justification": "31.25 percentile chosen because Hire rating indicates targeting 25-50th percentile",
+            "bonus_justification": "15% bonus for P4 level per company policy",
+            "equity_justification": "$60,000 equity for P4 level per company policy"
+          },
+          "bonus_amount": 28950.0,
+          "market_range": {
+            "min": 175000.0,
+            "max": 237000.0,
+            "source": "CompRanges.csv"
+          }
+        },
+        "response_text": "For CAND-SRSHAH-001, I recommend a total compensation of $281,950 consisting of: Base Salary: $193,000 (29th percentile of market range $175,000-$237,000 per CompRanges.csv), Bonus: $28,950 (15% for P4 level), Equity: $60,000. This reflects the Hire interview feedback."
+      }
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.596160+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630707+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary",
+      "old_value": null,
+      "new_value": 193000.0
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630723+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary_percentile",
+      "old_value": null,
+      "new_value": 29.0
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630725+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage",
+      "old_value": null,
+      "new_value": 15.0
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630727+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_amount",
+      "old_value": null,
+      "new_value": 28950.0
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630729+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_amount",
+      "old_value": null,
+      "new_value": 60000.0
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630730+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "total_compensation",
+      "old_value": null,
+      "new_value": 281950.0
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630732+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_range",
+      "old_value": null,
+      "new_value": {
+        "min": 175000.0,
+        "max": 237000.0,
+        "source": "CompRanges.csv"
+      }
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630734+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_data_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630735+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "internal_parity_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630736+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630738+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "proficiency_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630739+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "level_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630740+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "band_placement_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630742+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_allocation_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630743+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630744+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "data_sources_used",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:16:45.630745+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "considerations_and_tradeoffs",
+      "old_value": null,
+      "new_value": ""
+    }
+  ],
+  "CAND-SRSHAH-002": [
+    {
+      "timestamp": "2025-12-12T20:17:06.448111+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "location",
+      "old_value": null,
+      "new_value": "SEA"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:06.448119+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "updated_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:06.448121+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "created_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:06.448124+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "state",
+      "old_value": null,
+      "new_value": "active"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:35.972479+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_title",
+      "old_value": null,
+      "new_value": "Finance Analyst"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:35.972499+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_level",
+      "old_value": null,
+      "new_value": "P2"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:35.972502+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family",
+      "old_value": null,
+      "new_value": "Finance"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:35.972504+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T20:17:35.972508+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "additional_data",
+      "old_value": null,
+      "new_value": {}
+    },
+    {
+      "timestamp": "2025-12-12T20:17:35.972510+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": null,
+      "new_value": []
+    },
+    {
+      "timestamp": "2025-12-12T20:17:36.022564+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T20:18:29.531038+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_level",
+      "old_value": "P2",
+      "new_value": "P3"
+    },
+    {
+      "timestamp": "2025-12-12T20:18:29.531046+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T20:18:29.584950+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T20:21:20.368137+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_title",
+      "old_value": "Finance Analyst",
+      "new_value": "Financial Analyst"
+    },
+    {
+      "timestamp": "2025-12-12T20:21:20.368149+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.017412+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": [],
+      "new_value": [
+        {
+          "timestamp": "2025-12-12T20:23:30.008701+00:00",
+          "context_snapshot": {
+            "job_title": "Financial Analyst",
+            "job_level": "P3",
+            "location": "SEA",
+            "interview_feedback": "Must Hire",
+            "job_family": "Finance"
+          },
+          "recommendation": {
+            "status": "approved",
+            "data_status": "OK",
+            "market_compensation": {
+              "min": 99000,
+              "max": 134000,
+              "currency": "USD"
+            },
+            "internal_parity": null,
+            "recommendation": {
+              "base_salary": 126750.0,
+              "base_salary_percentile": 79.3,
+              "bonus_percentage": 10.0,
+              "equity_amount": 30000.0,
+              "total_compensation": 169425.0,
+              "reasoning": {
+                "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+                "internal_parity_citation": "No internal parity data",
+                "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate fit and competitive offer",
+                "bonus_justification": "10% bonus for P3 level per company policy",
+                "equity_justification": "$30,000 equity for P3 level per company policy"
+              },
+              "bonus_amount": 12675.0,
+              "market_range": {
+                "min": 99000.0,
+                "max": 134000.0,
+                "source": "CompRanges.csv"
+              }
+            },
+            "response_text": "For CAND-SRSHAH-002, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.017419+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation",
+      "old_value": null,
+      "new_value": {
+        "status": "approved",
+        "data_status": "OK",
+        "market_compensation": {
+          "min": 99000,
+          "max": 134000,
+          "currency": "USD"
+        },
+        "internal_parity": null,
+        "recommendation": {
+          "base_salary": 126750.0,
+          "base_salary_percentile": 79.3,
+          "bonus_percentage": 10.0,
+          "equity_amount": 30000.0,
+          "total_compensation": 169425.0,
+          "reasoning": {
+            "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+            "internal_parity_citation": "No internal parity data",
+            "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate fit and competitive offer",
+            "bonus_justification": "10% bonus for P3 level per company policy",
+            "equity_justification": "$30,000 equity for P3 level per company policy"
+          },
+          "bonus_amount": 12675.0,
+          "market_range": {
+            "min": 99000.0,
+            "max": 134000.0,
+            "source": "CompRanges.csv"
+          }
+        },
+        "response_text": "For CAND-SRSHAH-002, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+      }
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.237989+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272610+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary",
+      "old_value": null,
+      "new_value": 126750.0
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272616+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary_percentile",
+      "old_value": null,
+      "new_value": 79.3
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272618+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage",
+      "old_value": null,
+      "new_value": 10.0
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272620+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_amount",
+      "old_value": null,
+      "new_value": 12675.0
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272621+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_amount",
+      "old_value": null,
+      "new_value": 30000.0
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272622+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "total_compensation",
+      "old_value": null,
+      "new_value": 169425.0
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272624+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_range",
+      "old_value": null,
+      "new_value": {
+        "min": 99000.0,
+        "max": 134000.0,
+        "source": "CompRanges.csv"
+      }
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272625+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_data_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272627+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "internal_parity_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272628+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272630+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "proficiency_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272631+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "level_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272632+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "band_placement_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272634+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_allocation_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272635+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272636+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "data_sources_used",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T20:23:30.272638+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "considerations_and_tradeoffs",
+      "old_value": null,
+      "new_value": ""
+    }
+  ],
+  "CAND-SRSHAH-003": [
+    {
+      "timestamp": "2025-12-12T20:52:51.103394+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "location",
+      "old_value": null,
+      "new_value": "SEA"
+    },
+    {
+      "timestamp": "2025-12-12T20:52:51.103410+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "updated_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T20:52:51.103412+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "created_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T20:52:51.103414+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "state",
+      "old_value": null,
+      "new_value": "active"
+    },
+    {
+      "timestamp": "2025-12-12T20:59:25.641682+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "additional_data",
+      "old_value": null,
+      "new_value": {}
+    },
+    {
+      "timestamp": "2025-12-12T20:59:25.641688+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": null,
+      "new_value": []
+    },
+    {
+      "timestamp": "2025-12-12T21:02:31.197527+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_title",
+      "old_value": null,
+      "new_value": "Finance Analyst"
+    },
+    {
+      "timestamp": "2025-12-12T21:02:31.197538+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_level",
+      "old_value": null,
+      "new_value": "P3"
+    },
+    {
+      "timestamp": "2025-12-12T21:02:31.197541+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family",
+      "old_value": null,
+      "new_value": "Finance"
+    },
+    {
+      "timestamp": "2025-12-12T21:02:31.197543+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T21:02:31.246414+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T21:03:18.160882+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T21:03:18.205441+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T21:07:26.090416+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_title",
+      "old_value": "Finance Analyst",
+      "new_value": "Financial Analyst"
+    },
+    {
+      "timestamp": "2025-12-12T21:07:26.090429+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T21:10:30.535639+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T21:16:45.222535+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.024497+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": [],
+      "new_value": [
+        {
+          "timestamp": "2025-12-12T21:16:50.016618+00:00",
+          "context_snapshot": {
+            "job_title": "Financial Analyst",
+            "job_level": "P3",
+            "location": "SEA",
+            "interview_feedback": "Must Hire",
+            "job_family": "Finance"
+          },
+          "recommendation": {
+            "status": "approved",
+            "data_status": "OK",
+            "market_compensation": {
+              "min": 99000.0,
+              "max": 134000.0,
+              "currency": "USD"
+            },
+            "internal_parity": null,
+            "recommendation": {
+              "base_salary": 126750.0,
+              "base_salary_percentile": 79.3,
+              "bonus_percentage": 10.0,
+              "equity_amount": 30000.0,
+              "total_compensation": 169425.0,
+              "reasoning": {
+                "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+                "internal_parity_citation": "No internal parity data",
+                "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong market positioning",
+                "bonus_justification": "10% bonus for P3 level per company policy",
+                "equity_justification": "$30,000 equity for P3 level per company policy"
+              },
+              "bonus_amount": 12675.0,
+              "market_range": {
+                "min": 99000.0,
+                "max": 134000.0,
+                "source": "CompRanges.csv"
+              }
+            },
+            "response_text": "For CAND-SRSHAH-003, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.024513+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation",
+      "old_value": null,
+      "new_value": {
+        "status": "approved",
+        "data_status": "OK",
+        "market_compensation": {
+          "min": 99000.0,
+          "max": 134000.0,
+          "currency": "USD"
+        },
+        "internal_parity": null,
+        "recommendation": {
+          "base_salary": 126750.0,
+          "base_salary_percentile": 79.3,
+          "bonus_percentage": 10.0,
+          "equity_amount": 30000.0,
+          "total_compensation": 169425.0,
+          "reasoning": {
+            "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+            "internal_parity_citation": "No internal parity data",
+            "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong market positioning",
+            "bonus_justification": "10% bonus for P3 level per company policy",
+            "equity_justification": "$30,000 equity for P3 level per company policy"
+          },
+          "bonus_amount": 12675.0,
+          "market_range": {
+            "min": 99000.0,
+            "max": 134000.0,
+            "source": "CompRanges.csv"
+          }
+        },
+        "response_text": "For CAND-SRSHAH-003, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+      }
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.239707+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278732+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary",
+      "old_value": null,
+      "new_value": 126750.0
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278737+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary_percentile",
+      "old_value": null,
+      "new_value": 79.3
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278739+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage",
+      "old_value": null,
+      "new_value": 10.0
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278740+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_amount",
+      "old_value": null,
+      "new_value": 12675.0
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278742+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_amount",
+      "old_value": null,
+      "new_value": 30000.0
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278743+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "total_compensation",
+      "old_value": null,
+      "new_value": 169425.0
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278745+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_range",
+      "old_value": null,
+      "new_value": {
+        "min": 99000.0,
+        "max": 134000.0,
+        "source": "CompRanges.csv"
+      }
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278746+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_data_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278747+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "internal_parity_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278749+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278750+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "proficiency_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278752+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "level_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278753+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "band_placement_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278754+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_allocation_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278755+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278757+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "data_sources_used",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:16:50.278758+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "considerations_and_tradeoffs",
+      "old_value": null,
+      "new_value": ""
+    }
+  ],
+  "CAND-SRSHAH-004": [
+    {
+      "timestamp": "2025-12-12T21:17:32.697642+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "location",
+      "old_value": null,
+      "new_value": "SEA"
+    },
+    {
+      "timestamp": "2025-12-12T21:17:32.697659+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "updated_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T21:17:32.697662+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "created_by",
+      "old_value": null,
+      "new_value": "riot-comp-user1@example.com"
+    },
+    {
+      "timestamp": "2025-12-12T21:17:32.697664+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "state",
+      "old_value": null,
+      "new_value": "active"
+    },
+    {
+      "timestamp": "2025-12-12T21:18:41.040830+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_title",
+      "old_value": null,
+      "new_value": "Financial Analyst"
+    },
+    {
+      "timestamp": "2025-12-12T21:18:41.040841+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_level",
+      "old_value": null,
+      "new_value": "P3"
+    },
+    {
+      "timestamp": "2025-12-12T21:18:41.040843+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family",
+      "old_value": null,
+      "new_value": "Finance"
+    },
+    {
+      "timestamp": "2025-12-12T21:18:41.040845+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": null,
+      "new_value": "Must Hire"
+    },
+    {
+      "timestamp": "2025-12-12T21:18:41.040847+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "additional_data",
+      "old_value": null,
+      "new_value": {}
+    },
+    {
+      "timestamp": "2025-12-12T21:18:41.040849+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": null,
+      "new_value": []
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.662553+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation_history",
+      "old_value": [],
+      "new_value": [
+        {
+          "timestamp": "2025-12-12T21:18:44.651232+00:00",
+          "context_snapshot": {
+            "job_title": "Financial Analyst",
+            "job_level": "P3",
+            "location": "SEA",
+            "interview_feedback": "Must Hire",
+            "job_family": "Finance"
+          },
+          "recommendation": {
+            "status": "approved",
+            "data_status": "OK",
+            "market_compensation": {
+              "min": 99000.0,
+              "max": 134000.0,
+              "currency": "USD"
+            },
+            "internal_parity": null,
+            "recommendation": {
+              "base_salary": 126750.0,
+              "base_salary_percentile": 79.3,
+              "bonus_percentage": 10.0,
+              "equity_amount": 30000.0,
+              "total_compensation": 169425.0,
+              "reasoning": {
+                "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+                "internal_parity_citation": "No internal parity data",
+                "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate deserving higher percentile within target range",
+                "bonus_justification": "10% bonus for P3 level per company policy",
+                "equity_justification": "$30,000 equity for P3 level per company policy"
+              },
+              "bonus_amount": 12675.0,
+              "market_range": {
+                "min": 99000.0,
+                "max": 134000.0,
+                "source": "CompRanges.csv"
+              }
+            },
+            "response_text": "For CAND-SRSHAH-004, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+          }
+        }
+      ]
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.662569+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "recommendation",
+      "old_value": null,
+      "new_value": {
+        "status": "approved",
+        "data_status": "OK",
+        "market_compensation": {
+          "min": 99000.0,
+          "max": 134000.0,
+          "currency": "USD"
+        },
+        "internal_parity": null,
+        "recommendation": {
+          "base_salary": 126750.0,
+          "base_salary_percentile": 79.3,
+          "bonus_percentage": 10.0,
+          "equity_amount": 30000.0,
+          "total_compensation": 169425.0,
+          "reasoning": {
+            "market_data_citation": "CompRanges.csv: Financial Analyst in SEA range $99,000 - $134,000",
+            "internal_parity_citation": "No internal parity data",
+            "percentile_justification": "75th percentile chosen because Must Hire rating indicates strong candidate deserving higher percentile within target range",
+            "bonus_justification": "10% bonus for P3 level per company policy",
+            "equity_justification": "$30,000 equity for P3 level per company policy"
+          },
+          "bonus_amount": 12675.0,
+          "market_range": {
+            "min": 99000.0,
+            "max": 134000.0,
+            "source": "CompRanges.csv"
+          }
+        },
+        "response_text": "For CAND-SRSHAH-004, I recommend a total compensation of $169,425 consisting of: Base Salary: $126,750 (79th percentile of market range $99,000-$134,000 per CompRanges.csv), Bonus: $12,675 (10% for P3 level), Equity: $30,000. This reflects the Must Hire interview feedback."
+      }
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.876514+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "interview_feedback",
+      "old_value": "Must Hire",
+      "new_value": null
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917378+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary",
+      "old_value": null,
+      "new_value": 126750.0
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917389+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "base_salary_percentile",
+      "old_value": null,
+      "new_value": 79.3
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917391+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage",
+      "old_value": null,
+      "new_value": 10.0
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917393+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_amount",
+      "old_value": null,
+      "new_value": 12675.0
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917394+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_amount",
+      "old_value": null,
+      "new_value": 30000.0
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917396+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "total_compensation",
+      "old_value": null,
+      "new_value": 169425.0
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917398+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_range",
+      "old_value": null,
+      "new_value": {
+        "min": 99000.0,
+        "max": 134000.0,
+        "source": "CompRanges.csv"
+      }
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917400+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "market_data_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917401+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "internal_parity_analysis",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917450+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "job_family_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917452+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "proficiency_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917454+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "level_impact",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917455+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "band_placement_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917457+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "equity_allocation_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917459+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "bonus_percentage_reasoning",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917460+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "data_sources_used",
+      "old_value": null,
+      "new_value": ""
+    },
+    {
+      "timestamp": "2025-12-12T21:18:44.917462+00:00",
+      "user": "riot-comp-user1@example.com",
+      "field": "considerations_and_tradeoffs",
+      "old_value": null,
+      "new_value": ""
+    }
   ]
 }

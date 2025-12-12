@@ -1,15 +1,13 @@
 """
-Simplified Coordinator Agent Workflow for Compensation Recommendations.
-Clean, linear logic with clear separation of concerns.
+Coordinator Agent Workflow for Compensation Recommendations.
 """
 from typing import TypedDict, Literal, Optional, Dict, Any, Set, List
 from langgraph.graph import StateGraph, END
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import SystemMessage
 import json
 import re
-import asyncio
 import logging
 from datetime import datetime, timezone
 from config import settings
@@ -126,7 +124,11 @@ def normalize_feedback(value: str) -> Optional[str]:
 def extract_json(text: str) -> Optional[dict]:
     """Extract JSON object from text, handling nested structures."""
     if not text:
+        logger.debug("extract_json: Empty text provided")
         return None
+    
+    logger.debug(f"extract_json: Attempting to extract JSON from text ({len(text)} chars)")
+    
     try:
         # Find the first '{' and match it with the correct '}'
         start = text.find('{')
@@ -146,11 +148,15 @@ def extract_json(text: str) -> Optional[dict]:
                     break
         
         if end > start:
-            return json.loads(text[start:end+1])
+            extracted = json.loads(text[start:end+1])
+            logger.debug(f"extract_json: Successfully extracted JSON with keys: {list(extracted.keys())}")
+            return extracted
     except json.JSONDecodeError as e:
-        logger.warning(f"Failed to parse JSON: {e}")
+        logger.warning(f"extract_json: Failed to parse JSON: {e}")
     except Exception as e:
-        logger.warning(f"Error extracting JSON: {e}")
+        logger.warning(f"extract_json: Error extracting JSON: {e}")
+    
+    logger.debug("extract_json: No valid JSON found")
     return None
 
 # ============================================================================
@@ -166,11 +172,32 @@ MESSAGE HANDLING RULES:
 
 REQUIRED FIELDS (must have all 6 before generating recommendation):
 - candidate_id (CAND-XXX format)
-- job_title
+- job_title (MUST match one of our available job titles - see AVAILABLE JOB TITLES below)
 - job_level (P1-P5)
 - location (LAX, SEA, STL, DUB, SHA, SYD, SIN)
 - job_family (Engineering, Finance, Legal, HR, Sales, Marketing, Operations, Executive)
 - interview_feedback (Must Hire, Strong Hire, Hire)
+
+AVAILABLE JOB TITLES (use semantic matching to normalize user input to these):
+{job_titles}
+
+CRITICAL JOB TITLE NORMALIZATION RULES:
+1. Fix typos and spelling variations: "Finance Analyst" or "Finace Analyst" → "Financial Analyst"
+2. Expand common abbreviations: "PM" → "Product Manager", "Sr" → "Senior", "QA" → "Quality Assurance"
+3. Preserve ALL seniority modifiers (Senior, Staff, Principal, Junior, Lead) exactly as user specifies
+4. Apply both seniority preservation AND semantic normalization together
+
+Examples of CORRECT normalization:
+✓ "Finance Analyst" → "Financial Analyst" (semantic match, same level)
+✓ "Sr Finance Analyst" → "Senior Financial Analyst" (expand 'Sr' + semantic match)
+✓ "Senior Finance Analyst" → "Senior Financial Analyst" (keep 'Senior' + semantic match)
+✓ "Staff Data Science" → "Staff Data Scientist" (keep 'Staff' + role variation)
+✓ "Lead QA Engineer" → "Lead Quality Assurance Engineer" (keep 'Lead' + abbreviation expansion)
+
+Examples of INCORRECT normalization (DO NOT DO THIS):
+✗ "Software Engineer" → "Senior Software Engineer" (NEVER add seniority not mentioned by user)
+✗ "Financial Analyst" → "Senior Financial Analyst" (NEVER upgrade level unless user specifies)
+✗ "Sr Finance Analyst" → "Finance Analyst" (NEVER drop seniority - must keep as "Senior Financial Analyst")
 
 ADDITIONAL CONTEXT - Extract ANY relevant compensation info mentioned in the message:
 Examples of what to extract (not limited to these):
@@ -309,6 +336,10 @@ async def coordinator_agent(state: AgentState) -> dict:
     # -------------------------------------------------------------------------
     metadata = data_access.get_metadata()
     
+    # Format job titles for prompt (first 50 to avoid token overflow)
+    job_titles_list = metadata.get("job_titles", [])[:50]
+    job_titles_formatted = "\n".join([f"- {title}" for title in job_titles_list])
+    
     context_json = json.dumps({
         "candidate_id": context.get("candidate_id") or candidate_id,
         "job_title": context.get("job_title"),
@@ -330,6 +361,7 @@ async def coordinator_agent(state: AgentState) -> dict:
             history_text += f"Assistant: {msg['response']}\n"
     
     prompt = COORDINATOR_PROMPT.format(
+        job_titles=job_titles_formatted,
         context_json=context_json,
         additional_context_json=additional_context_json,
         history_text=history_text or "None",
@@ -339,7 +371,11 @@ async def coordinator_agent(state: AgentState) -> dict:
     try:
         response = await llm.ainvoke([SystemMessage(content=prompt)])
         response_text = response.content or ""
+        logger.debug(f"Coordinator: LLM response length={len(response_text)}")
+        # Log a preview (first 1000 chars) to avoid excessively long logs
+        logger.debug(f"Coordinator: LLM response preview: {response_text[:1000]!r}")
     except Exception as e:
+        logger.exception(f"Coordinator: LLM call failed: {e}")
         return {**state, "response": f"Error: {e}", "next_step": "respond"}
     
     # -------------------------------------------------------------------------
@@ -348,12 +384,14 @@ async def coordinator_agent(state: AgentState) -> dict:
     has_action_research = bool(re.search(r'ACTION\s*:\s*RESEARCH', response_text, re.IGNORECASE))
     
     # Extract user-facing response (before JSON)
-    user_response = re.sub(r'\{[\s\S]*\}', '', response_text)
+    user_response = re.sub(r'```json[\s\S]*?```', '', response_text, flags=re.IGNORECASE)  # Remove markdown code blocks
+    user_response = re.sub(r'\{[\s\S]*?\}', '', user_response)  # Remove JSON objects
     user_response = re.sub(r'ACTION\s*:\s*RESEARCH', '', user_response, flags=re.IGNORECASE)
     user_response = user_response.strip()
     
     # Extract JSON
     extracted = extract_json(response_text)
+    logger.debug(f"Coordinator: extracted JSON keys: {list(extracted.keys()) if extracted else None}")
     
     # -------------------------------------------------------------------------
     # STEP 6: Merge extracted fields into context
@@ -378,6 +416,7 @@ async def coordinator_agent(state: AgentState) -> dict:
             
             if new_additional:
                 logger.info(f"Coordinator: Merged additional_context: {list(new_additional.keys())}")
+                logger.debug(f"Coordinator: merged additional_context sample: {str({k: new_additional[k] for k in list(new_additional)[:5]})}")
     
     # Ensure candidate_id is set
     context["candidate_id"] = context.get("candidate_id") or candidate_id
@@ -393,16 +432,25 @@ async def coordinator_agent(state: AgentState) -> dict:
     # -------------------------------------------------------------------------
     missing = get_missing_fields(context)
     
+    # Log context state for debugging
+    logger.debug(f"Coordinator: Context state before completeness check: candidate_id={context.get('candidate_id')}, "
+                 f"job_title={context.get('job_title')}, job_level={context.get('job_level')}, "
+                 f"location={context.get('location')}, job_family={context.get('job_family')}, "
+                 f"interview_feedback={context.get('interview_feedback')}")
+    logger.info(f"Coordinator: Missing fields check result: {missing if missing else 'None - all fields present'}")
+    
     # Save context only if we have a candidate
     if context.get("candidate_id"):
         try:
             context_store.save_context(context["candidate_id"], context, user_email or "system")
+            logger.info(f"Coordinator: Saved context for {context.get('candidate_id')}")
         except Exception as e:
             logger.warning(f"Failed to save context for {context.get('candidate_id')}: {e}")
     
     # If no candidate_id in context, this is likely a greeting or off-topic
     # Use LLM's response directly
     if not context.get("candidate_id"):
+        logger.info("Coordinator: No candidate_id found in context — treating as greeting/off-topic")
         return {
             **state,
             "candidate_id": None,
@@ -411,21 +459,10 @@ async def coordinator_agent(state: AgentState) -> dict:
             "next_step": "respond"
         }
     
-    # If missing fields and user provided some candidate info, ask for missing
-    if missing:
-        friendly = get_friendly_names(missing)
-        return {
-            **state,
-            "candidate_id": context.get("candidate_id"),
-            "context": context,
-            "missing_fields": missing,
-            "response": user_response or f"I still need: {', '.join(friendly)}. Could you provide these?",
-            "next_step": "respond"
-        }
-    
-    # Validate job level before proceeding
+    # Validate job level before proceeding (do this before missing fields check)
     job_level = context.get("job_level")
     if job_level and job_level not in VALID_LEVELS:
+        logger.info(f"Coordinator: Invalid job level provided: {job_level}")
         return {
             **state,
             "candidate_id": context.get("candidate_id"),
@@ -434,9 +471,45 @@ async def coordinator_agent(state: AgentState) -> dict:
             "next_step": "respond"
         }
     
-    # All fields present
-    if has_action_research or any(kw in message.lower() for kw in ["recommendation", "compensation", "offer", "salary"]):
-        # Ready for research
+    # ALWAYS check for missing fields when we have a candidate_id
+    # Don't wait for user to explicitly ask for recommendation
+    if missing:
+        friendly = get_friendly_names(missing)
+        logger.info(f"Coordinator: Missing required fields for {context.get('candidate_id')}: {missing}")
+        
+        # Check if user is explicitly asking for recommendation despite missing fields
+        logger.debug(f"Coordinator: has_action_research={has_action_research}")
+        user_wants_recommendation = has_action_research or any(kw in message.lower() for kw in ["recommendation", "compensation", "offer", "salary"])
+        
+        if user_wants_recommendation:
+            # User wants recommendation but missing fields - be explicit
+            logger.warning(f"Coordinator: User requested recommendation but missing fields: {missing}")
+            return {
+                **state,
+                "candidate_id": context.get("candidate_id"),
+                "context": context,
+                "missing_fields": missing,
+                "response": user_response or f"I'd be happy to generate a recommendation! However, I still need: {', '.join(friendly)}. Could you provide these?",
+                "next_step": "respond"
+            }
+        else:
+            # User just provided some info - ask for missing fields
+            logger.info(f"Coordinator: Will prompt user for missing fields and NOT route to research")
+            return {
+                **state,
+                "candidate_id": context.get("candidate_id"),
+                "context": context,
+                "missing_fields": missing,
+                "response": user_response or f"I still need: {', '.join(friendly)}. Could you provide these?",
+                "next_step": "respond"
+            }
+    
+    # No missing fields - check if user wants recommendation
+    user_wants_recommendation = has_action_research or any(kw in message.lower() for kw in ["recommendation", "compensation", "offer", "salary"])
+    
+    if user_wants_recommendation:
+        # All fields present - ready for research
+        logger.info(f"Coordinator: All fields present. Routing to Research for {context.get('candidate_id')} (has_action_research={has_action_research})")
         return {
             **state,
             "candidate_id": context.get("candidate_id"),
@@ -642,8 +715,17 @@ async def research_agent(state: AgentState) -> dict:
     job_title = research_data.get("job_title") or context.get("job_title")
     location = research_data.get("location") or context.get("location")
     
+    # Defensive check - should never reach here with missing required fields
     if not job_title or not location:
-        return {**state, "response": "Missing job title or location.", "next_step": "respond"}
+        missing = []
+        if not job_title:
+            missing.append("job title")
+        if not location:
+            missing.append("location")
+        logger.error(f"Research: Called with missing required fields: {missing}. This should have been caught by coordinator.")
+        return {**state, "response": f"I still need the {' and '.join(missing)} before I can generate a recommendation. Please provide these details.", "next_step": "respond"}
+    
+    logger.info(f"Research: Starting research for {job_title} in {location}")
     
     # Check if we need to collect fresh data (DataCollectorAgent)
     if not DataCollectorAgent.is_data_fresh(research_data, job_title, location):
