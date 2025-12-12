@@ -620,11 +620,6 @@ class DataCollectorAgent:
         return result
 
 
-# Convenience function for backward compatibility
-async def collect_compensation_data(job_title: str, location: str) -> dict:
-    """Collect market and parity data. Delegates to DataCollectorAgent."""
-    return await DataCollectorAgent.collect(job_title, location)
-
 # ============================================================================
 # RESEARCH AGENT (Simplified)
 # ============================================================================
