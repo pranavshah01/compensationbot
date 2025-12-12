@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --foreground-rgb: 15, 23, 42;
+    --background-start-rgb: 248, 250, 252;
+    --background-end-rgb: 255, 255, 255;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code {
+    font-family: var(--font-mono), monospace;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Modern glassmorphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20;
+  }
+
+  /* Smooth scroll */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+
+
