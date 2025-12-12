@@ -23,7 +23,7 @@
 - Prepare FAQ document
 
 **Technical Preparation**:
-- Set up production environment (if different from development)
+- Set up production environment
 - Configure API keys and environment variables
 - Set up monitoring and alerting (if applicable)
 - Perform security review
@@ -200,234 +200,198 @@
 
 **Contingency**: Adjust workflows or system features based on user feedback
 
-## Improvement Suggestions: MVP → V2
+## Production Launch: Engineering Requirements (MVP → V2)
 
-### 1. Real System Integrations
+### 1. AWS Infrastructure Setup
 
-**Current State (MVP)**: Mock CSV files simulate Workday and Greenhouse
+**Current State (MVP)**: Local development environment
 
-**V2 Enhancement**:
-- Real Workday API integration for market compensation data
-- Real Greenhouse API integration for employee roster and candidate information
-- Real-time data synchronization
-- Automatic data updates (no manual CSV maintenance)
+**V2 Requirements**:
+- **Backend**: Deploy FastAPI on AWS ECS or AWS App Runner with auto-scaling
+- **Slack Bot**: Deploy as containerized service on ECS
+- **Database**: AWS RDS PostgreSQL for all persistent data (contexts, messages, audit logs)
+- **Load Balancing**: Application Load Balancer (ALB) with SSL/TLS termination
+- **Networking**: VPC with private/public subnets, security groups, and NAT gateway
+- **Secrets**: AWS Secrets Manager for API keys, database credentials, Slack tokens
+- **Monitoring**: CloudWatch logs, metrics, dashboards, and alarms
+- **Backups**: Automated RDS snapshots and multi-AZ deployment
 
-**Benefits**:
-- Eliminates manual data updates
-- Ensures data accuracy and currency
-- Reduces maintenance overhead
-- Enables real-time candidate information
+**Implementation Tasks**:
+- AWS account setup and IAM roles configuration
+- Docker containerization of backend services
+- ECS cluster setup with task definitions
+- RDS instance provisioning and schema migration
+- CloudWatch dashboard creation
+- CI/CD pipeline setup (GitHub Actions or AWS CodePipeline)
 
-**Implementation Considerations**:
-- API authentication and authorization
-- Rate limiting and error handling
-- Data transformation and normalization
-- Fallback mechanisms if APIs are unavailable
+### 2. AWS Bedrock LLM Integration
 
-### 2. Advanced Analytics and Dashboards
+**Current State (MVP)**: Direct OpenAI/Gemini API calls
 
-**Current State (MVP)**: No analytics or dashboards
+**V2 Requirements**:
+- Replace LLM calls with **AWS Bedrock** using **Claude 3 Sonnet** or **Claude 3.5 Sonnet**
+- Update `backend/config.py` to support Bedrock SDK (boto3)
+- Configure Bedrock model access and permissions
+- Implement streaming responses via Bedrock API
+- Monitor token usage and costs through CloudWatch
 
-**V2 Enhancement**:
-- Dashboard showing recommendation trends
-- Analytics on job family compensation patterns
-- Internal parity analysis and visualization
-- User adoption and usage metrics
-- Recommendation accuracy metrics
+**Implementation Tasks**:
+- Request Bedrock model access in AWS account
+- Update agent workflow code to use boto3 Bedrock client
+- Test recommendation quality with Claude models
+- Set up CloudWatch metrics for token usage
+- Configure cost alerts and budgets
 
-**Benefits**:
-- Data-driven insights for compensation strategy
-- Identify trends and patterns
-- Monitor system usage and adoption
-- Evaluate recommendation quality
+### 3. Slack Integration
 
-**Implementation Considerations**:
-- Data aggregation and processing
-- Visualization tools and libraries
-- Privacy and data security
-- Performance optimization for large datasets
+**Current State (MVP)**: Web UI with Next.js
 
-### 3. Enhanced RBAC (Role-Based Access Control)
+**V2 Requirements**:
+- Build Slack bot using Bolt for Python
+- Support slash commands: `/comp-assist recommend`, `/comp-assist context`, `/comp-assist status`
+- Interactive message buttons for feedback and actions
+- Thread-based conversations for context management
+- Slack OAuth for user authentication and permission mapping
+- Real-time notifications for recommendation completion
 
-**Current State (MVP)**: Hardcoded users with simple permission rules
+**Implementation Tasks**:
+- Create Slack app and install in workspace
+- Implement Bolt for Python event handlers
+- Map Slack user IDs to internal permissions (Comp Team vs Recruitment)
+- Build interactive message components
+- Test slash commands and message flows
 
-**V2 Enhancement**:
-- Database-backed user management
-- Configurable roles and permissions
-- Integration with company SSO (Single Sign-On)
-- User provisioning and deprovisioning
-- Fine-grained permission controls
+### 4. Database Migration (RDS PostgreSQL)
 
-**Benefits**:
-- Scalable user management
-- Better security and access control
-- Integration with existing identity systems
-- Flexible permission model
+**Current State (MVP)**: JSON files and CSV storage
 
-**Implementation Considerations**:
-- SSO integration (SAML, OAuth)
-- Permission model design
-- User migration from hardcoded credentials
-- Audit logging for permission changes
+**V2 Requirements**:
+- Schema design:
+  - `candidates`: Candidate context data
+  - `messages`: Conversation history
+  - `audit_logs`: Full audit trail with timestamps
+  - `users`: User permissions and roles
+  - `comp_ranges`: Market compensation data (synced from Workday)
+  - `employee_roster`: Internal parity data (synced from Greenhouse)
+- Connection pooling with RDS Proxy
+- Database migrations using Alembic
+- Read replicas for query performance (optional)
 
-### 4. Offer Letter Generation
+**Implementation Tasks**:
+- Design normalized database schema
+- Write migration scripts from JSON/CSV to RDS
+- Implement SQLAlchemy models
+- Set up connection pooling
+- Configure automated backups
 
-**Current State (MVP)**: No offer letter generation
+### 5. System Integrations (Workato)
 
-**V2 Enhancement**:
-- Automated offer letter generation based on recommendations
-- Template management and customization
-- PDF generation with company branding
-- Integration with document management systems
-- E-signature integration
+**Current State (MVP)**: Static CSV files
 
-**Benefits**:
-- Streamlines offer process
-- Ensures consistency in offer letters
-- Reduces manual work
-- Faster time-to-offer
+**V2 Requirements**:
+- **Workday Integration**: Daily sync of market compensation data to RDS
+- **Greenhouse Integration**: Daily sync of employee roster to RDS
+- Workato workflows for automated data synchronization
+- Error handling and alerting for sync failures
+- Data validation and quality checks
 
-**Implementation Considerations**:
-- Template engine and design
-- PDF generation library
-- Document storage and retrieval
-- Compliance and legal review
+**Implementation Tasks**:
+- Set up Workato account and connectors
+- Configure Workday API authentication
+- Configure Greenhouse API authentication
+- Build sync workflows with error handling
+- Set up CloudWatch alarms for sync failures
 
-### 5. Policy-Driven Compensation Modeling
+### 6. Authentication & SSO
 
-**Current State (MVP)**: Rule-based compensation calculations
+**Current State (MVP)**: Hardcoded credentials
 
-**V2 Enhancement**:
-- Configurable compensation policies
-- Policy engine for automated calculations
-- Policy versioning and audit trail
-- Policy testing and validation
-- Exception handling and approvals
+**V2 Requirements**:
+- Slack OAuth for user authentication
+- Map Slack workspace users to internal roles (Compensation Team, Recruitment Team)
+- JWT tokens for backend API authentication
+- Session management and token refresh
+- Audit logging for all authentication events
 
-**Benefits**:
-- Flexible compensation rules
-- Easy policy updates without code changes
-- Consistent policy application
-- Policy compliance monitoring
+**Implementation Tasks**:
+- Implement Slack OAuth flow
+- Build user permission mapping logic
+- Configure JWT token generation and validation
+- Set up session storage in RDS
 
-**Implementation Considerations**:
-- Policy definition language
-- Policy engine architecture
-- Policy testing framework
-- Integration with recommendation generation
+### 7. Monitoring & Observability
 
-### 6. Advanced Data Analysis
+**Current State (MVP)**: Basic CSV logging
 
-**Current State (MVP)**: Exact-match lookups only, no analysis
+**V2 Requirements**:
+- **CloudWatch Logs**: Centralized logging from all services
+- **CloudWatch Metrics**: Custom metrics for business KPIs (recommendations generated, success rate)
+- **CloudWatch Dashboards**: Real-time system health and performance
+- **CloudWatch Alarms**: Alerts for errors, slow responses, high costs
+- **AWS X-Ray**: Distributed tracing across agent workflow
+- **Cost Monitoring**: Track AWS and Bedrock spending
 
-**V2 Enhancement**:
-- Percentile analysis on internal parity data
-- Trend analysis and forecasting
-- Predictive modeling for compensation
-- Statistical analysis and reporting
-- Data visualization and charts
+**Implementation Tasks**:
+- Configure CloudWatch log groups
+- Instrument code with custom metrics
+- Create dashboards for key metrics
+- Set up alarms with SNS notifications
+- Enable X-Ray tracing in application
 
-**Benefits**:
-- Deeper insights into compensation patterns
-- Data-driven decision making
-- Identify outliers and anomalies
-- Support strategic compensation planning
+### 8. Security Hardening
 
-**Implementation Considerations**:
-- Statistical analysis libraries
-- Data processing and aggregation
-- Performance optimization
-- Privacy and data security
+**Current State (MVP)**: Basic HTTPS
 
-### 7. Enhanced Feedback and Evaluation
+**V2 Requirements**:
+- **AWS WAF**: Protect API endpoints from common attacks
+- **AWS KMS**: Encryption at rest for RDS and S3
+- **Security Groups**: Least-privilege network access rules
+- **Secrets Rotation**: Automatic credential rotation via Secrets Manager
+- **VPC Isolation**: Private subnets for backend services
+- **Rate Limiting**: Protect against abuse
 
-**Current State (MVP)**: Simple thumbs down / report error
+**Implementation Tasks**:
+- Configure WAF rules (OWASP Top 10)
+- Enable RDS encryption with KMS
+- Set up security groups and NACLs
+- Configure secrets rotation policies
+- Implement API rate limiting
 
-**V2 Enhancement**:
-- Detailed feedback forms with structured questions
-- Feedback analysis and reporting
-- Automated feedback categorization
-- Integration with recommendation improvement
-- User satisfaction surveys
+### 9. Performance Optimization
 
-**Benefits**:
-- Better understanding of system issues
-- Data-driven improvements
-- User satisfaction tracking
-- Continuous system refinement
+**Current State (MVP)**: Direct CSV reads, no caching
 
-**Implementation Considerations**:
-- Feedback form design
-- Analysis and reporting tools
-- Integration with recommendation pipeline
-- User engagement strategies
+**V2 Requirements**:
+- **AWS ElastiCache (Redis)**: Cache compensation ranges and employee data
+- **Database Indexing**: Optimize query performance
+- **Connection Pooling**: Reduce database connection overhead
+- **Async Processing**: Background jobs for long-running tasks
+- Load testing with realistic traffic patterns
 
-### 8. Database-Backed Storage
+**Implementation Tasks**:
+- Set up ElastiCache Redis cluster
+- Implement caching layer in application
+- Add database indexes on frequently queried columns
+- Configure RDS Proxy for connection pooling
+- Run load tests and optimize bottlenecks
 
-**Current State (MVP)**: JSON and CSV file storage
+### 10. Disaster Recovery & Backups
 
-**V2 Enhancement**:
-- PostgreSQL or MySQL database for context storage
-- Database-backed logging and audit trails
-- Improved query performance
-- Better concurrency handling
-- Data backup and recovery
+**Current State (MVP)**: No formal DR strategy
 
-**Benefits**:
-- Scalability and performance
-- Better data integrity
-- Advanced querying capabilities
-- Professional data management
+**V2 Requirements**:
+- Automated RDS snapshots (daily, 7-day retention)
+- Multi-AZ deployment for high availability
+- Backup S3 bucket for audit logs (cross-region replication)
+- Documented recovery procedures (RTO: 1 hour, RPO: 24 hours)
+- Quarterly DR testing
 
-**Implementation Considerations**:
-- Database schema design
-- Migration from JSON/CSV files
-- Performance optimization
-- Backup and disaster recovery
-
-### 9. Mobile Support
-
-**Current State (MVP)**: Web interface only (desktop-focused)
-
-**V2 Enhancement**:
-- Responsive mobile web interface
-- Mobile app (iOS/Android) optional
-- Push notifications for recommendations
-- Mobile-optimized chat interface
-
-**Benefits**:
-- Access from anywhere
-- Faster response times
-- Better user experience on mobile
-- Increased adoption
-
-**Implementation Considerations**:
-- Responsive design implementation
-- Mobile app development (if needed)
-- Performance optimization for mobile
-- Testing across devices
-
-### 10. Multi-Language Support
-
-**Current State (MVP)**: English only
-
-**V2 Enhancement**:
-- Support for multiple languages
-- Localized job titles and locations
-- Currency conversion and formatting
-- Regional compensation norms
-
-**Benefits**:
-- Global usability
-- Support for international teams
-- Better user experience for non-English speakers
-- Expanded market reach
-
-**Implementation Considerations**:
-- Internationalization (i18n) framework
-- Translation management
-- Currency and locale handling
-- Regional data requirements
+**Implementation Tasks**:
+- Enable automated RDS backups
+- Configure multi-AZ deployment
+- Set up S3 cross-region replication
+- Document recovery runbooks
+- Schedule DR drills
 
 ## Success Metrics
 

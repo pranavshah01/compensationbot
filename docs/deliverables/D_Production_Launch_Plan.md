@@ -99,8 +99,8 @@ This document outlines the key requirements for transitioning the Compensation R
 |-------|----------|-------|
 | **Foundation** | Weeks 1-4 | Database migration, RBAC/SSO, basic Slack bot, monitoring |
 | **Core Features** | Weeks 5-8 | Rules engine, approval workflow, Slack conversations, audit logging |
-| **Integration** | Weeks 9-12 | ATS/HRIS integration, analytics dashboard, PDF export |
-| **Optimization** | Weeks 13-16 | Evaluation framework, prompt tuning, load testing |
+| **Integration** | Weeks 9-12 | Vector DB (Optional) to Integrate with Policy Documents, Any other additional info like ATS System, Historical database etc, analytics dashboard, PDF export |
+| **Optimization** | Weeks 13-16 | Evaluation framework, prompt tuning, Prompt Sanitization, load testing |
 | **Launch** | Weeks 17-18 | UAT, training, staged rollout (10% → 50% → 100%) |
 
 ---
